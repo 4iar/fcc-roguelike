@@ -6,7 +6,7 @@ import { enemyEntity, obstacleEntity } from '../constants/entityTypes';
 import getCoordinatesInDirection from '../utils/getCoordinatesInDirection';
 import outOfBounds from '../utils/outOfBounds';
 
-import {DollarEnemy} from '../game/enemies';  // just for testing
+import {DollarEnemy} from '../entities/enemies';  // just for testing
 
 import Board from '../components/Board';
 import Log from '../components/Log';
