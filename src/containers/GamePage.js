@@ -1,10 +1,25 @@
 import React from 'react';
+import { Row, Grid } from 'react-bootstrap';
 
+import Board from '../components/Board';
+import Log from '../components/Log';
+import Stats from '../components/Stats';
 
 export default class GamePage extends React.Component {
   render() {
     return (
-      <h1>Hello World!</h1>
+      <Grid>
+        
+        <Row>
+          <Stats />
+        </Row>
+        
+        <Row>
+          <Board />
+          <Log />
+        </Row>
+        
+      </Grid>
     );
   }
 }
