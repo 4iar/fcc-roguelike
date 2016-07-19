@@ -1,21 +1,30 @@
 import React from 'react';
 import { Row, Grid } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
+import { attack } from '../actions/gameActions';
 import { movementKeys } from '../constants/keyTypes';
-import { enemyEntity, obstacleEntity } from '../constants/entityTypes';
+import { enemyEntity, obstacleEntity, floorEntity } from '../constants/entityTypes';
 import getCoordinatesInDirection from '../utils/getCoordinatesInDirection';
 import outOfBounds from '../utils/outOfBounds';
-
-import {DollarEnemy} from '../entities/enemies';  // just for testing
 
 import Board from '../components/Board';
 import Log from '../components/Log';
 import Stats from '../components/Stats';
 
+
+const getState = (state) => {
+  return {
+    board: state.game.board,
+    playerCoordinates: state.game.player.location
+  };
+};
+
+@connect(getState, {attack}, null, {withRef: true})
 export default class GamePage extends React.Component {
   constructor(props) {
     super(props);
-
+    
     window.addEventListener("keydown", this.handleKeyDown.bind(this), false);
   }
 
@@ -28,32 +37,30 @@ export default class GamePage extends React.Component {
   }
 
   handleMovement(direction) {
-    const board = [
-      [1,DollarEnemy,3],
-      [4,5,6],
-      [7,8,9]
-    ];
+    const map = this.props.board;
     const playerLocation = [1, 1];
     console.log("new coordinates: " + getCoordinatesInDirection(playerLocation, direction));
     const newCoordinates = getCoordinatesInDirection(playerLocation, direction);
 
-    if (!outOfBounds(board, newCoordinates)) {
-      const entity = board[newCoordinates[0]][newCoordinates[1]];
+    if (!outOfBounds(map, newCoordinates)) {
+      const entity = map[newCoordinates[0]][newCoordinates[1]];
 
       switch(entity.type) {
+        case floorEntity:
+          console.log("encountered floor");
+          break;
         case enemyEntity:
-          console.log(entity.type);
-          console.log(entity);
+          this.props.attack(newCoordinates);
           break;
         default:
           console.log("dunno");
       }
     }
 
-    if (!outOfBounds(board, newCoordinates)) {
-      console.log("got undefined coords at ");
-    } else if (board[newCoordinates[0]][newCoordinates[1]].type) {
-      console.log([board[newCoordinates[0]][newCoordinates[1]]]);
+    if (!outOfBounds(map, newCoordinates)) {
+      console.log("coords not undefined");
+    } else if (map[newCoordinates[0]][newCoordinates[1]].type) {
+      console.log([map[newCoordinates[0]][newCoordinates[1]]]);
     }
   }
 
