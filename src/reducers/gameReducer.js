@@ -1,7 +1,8 @@
 import _ from 'lodash';
 
 import initialState from './initialState';
-import { ATTACK } from '../constants/actionTypes';
+import { ATTACK, MOVE } from '../constants/actionTypes';
+import { Floor } from '../entities/floor';
 
 export default function game(state = initialState.game, action) {
   switch (action.type) {
@@ -20,7 +21,7 @@ export default function game(state = initialState.game, action) {
         console.log("player died");
       } else if (enemyIsDead) {
         console.log("enemy is dead");
-        enemy = {type: 'floor'};
+        enemy = Floor;
       } else {
         // enemy is just damaged
         console.log("enemy was damaged: " + enemy.health);
