@@ -1,14 +1,17 @@
 import {DollarEnemy} from '../entities/enemies';  // just for testing
+import {Player} from '../entities/player';  // just for testing
+import {Floor} from '../entities/floor';
+import {wallTypes} from '../entities/obstacles';
 
 export default {
   game: {
     board: [
-      [1,DollarEnemy,3],
-      [4,5,6],
-      [7,8,9]
+      [Floor,DollarEnemy,Floor],
+      [wallTypes[0],Player,wallTypes[0]],
+      [Floor,Floor,Floor]
     ],
     player: {
-      location: [1,1],
+      coordinates: [1,1],
       xp: 0,
       level: 1,
       health: 10,

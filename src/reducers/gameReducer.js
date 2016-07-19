@@ -33,7 +33,26 @@ export default function game(state = initialState.game, action) {
         ...state,
         board: newBoard 
       };
+      break;
     }
+    case MOVE: {
+      let newBoard = _.cloneDeep(state.board);
+      const playerObject = state.board[state.player.coordinates[0]][state.player.coordinates[1]];
+      //TODO: refactor to use newCoordinates
+
+      newBoard[action.payload.coordinates[0]][action.payload.coordinates[1]] = {...playerObject}
+      newBoard[state.player.coordinates[0]][state.player.coordinates[1]] = Floor;
+
+      const newCoordinates = action.payload.coordinates;
+      console.log(newCoordinates);
+      return {
+        ...state,
+        board: newBoard,
+        player: {...state.player, coordinates: newCoordinates}
+      };
+      break;
+    }
+
     default:
       return state;
   }
