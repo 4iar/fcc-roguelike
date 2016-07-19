@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 
-import fuelSavings from './gameReducer';
+import game from './gameReducer';
 
 
 const rootReducer = combineReducers({
-  fuelSavings
+  game
 });
 
 export default rootReducer;

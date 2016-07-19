@@ -1,8 +1,7 @@
 import initialState from './initialState';
 import { TEST_ACTION } from '../constants/actionTypes';
 
-export default function gameReducer(state = initialState.game, action) {
-  console.log(TEST_ACTION);
+export default function game(state = initialState.game, action) {
   switch (action.type) {
     default:
       return state;
