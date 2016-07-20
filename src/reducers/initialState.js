@@ -1,24 +1,10 @@
-import {DollarEnemy} from '../entities/enemies';  // just for testing
-import {Player} from '../entities/player';  // just for testing
-import {Floor} from '../entities/floor';
-import {wallTypes} from '../entities/obstacles';
+import generateBoard from '../utils/generateBoard';
 
 export default {
   game: {
-    board: [
-      [Player,DollarEnemy,Floor,Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor],
-      [Floor,DollarEnemy,Floor,Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor],
-      [Floor,DollarEnemy,Floor,Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor],
-      [Floor,DollarEnemy,Floor,Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor],
-      [Floor,DollarEnemy,Floor,Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor],
-      [Floor,DollarEnemy,Floor,Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor],
-      [Floor,DollarEnemy,Floor,Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor],
-      [Floor,DollarEnemy,Floor,Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor],
-      [Floor,DollarEnemy,Floor,Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor],
-      [Floor,DollarEnemy,Floor,Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor]
-    ],
+    board: generateBoard(),
     player: {
-      coordinates: [0,0],
+      coordinates: [70, 70],
       xp: 0,
       level: 1,
       health: 10,
