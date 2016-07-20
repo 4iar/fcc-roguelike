@@ -6,12 +6,19 @@ import {wallTypes} from '../entities/obstacles';
 export default {
   game: {
     board: [
-      [Floor,DollarEnemy,Floor],
-      [wallTypes[0],Player,wallTypes[0]],
-      [Floor,Floor,Floor]
+      [Player,DollarEnemy,Floor,Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor],
+      [Floor,DollarEnemy,Floor,Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor],
+      [Floor,DollarEnemy,Floor,Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor],
+      [Floor,DollarEnemy,Floor,Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor],
+      [Floor,DollarEnemy,Floor,Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor],
+      [Floor,DollarEnemy,Floor,Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor],
+      [Floor,DollarEnemy,Floor,Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor],
+      [Floor,DollarEnemy,Floor,Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor],
+      [Floor,DollarEnemy,Floor,Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor],
+      [Floor,DollarEnemy,Floor,Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor, Floor]
     ],
     player: {
-      coordinates: [1,1],
+      coordinates: [0,0],
       xp: 0,
       level: 1,
       health: 10,

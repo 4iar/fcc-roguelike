@@ -10,18 +10,21 @@
 .row {
   display: flex;
 
-  height: 50%;
+  height: 10%;
 }
 
 .square {
-  height: 50%;
-  width: 20%;
-
-  background-color: blue;
-  border: solid .5em red;
-  padding: 5%;
-
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+
+  text-align: center;
+
+  height: 10%;
+  max-width: 5%;
+  min-width: 5%;
+
+  background-color: gray;
+  border: solid .1em lightblue;
+  padding: 2%;
 }
