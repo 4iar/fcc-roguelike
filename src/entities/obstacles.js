@@ -12,3 +12,6 @@ export const wallTypes = [
   {...wall, className: 'wall2'},
   {...wall, className: 'wall3'},
 ];
+
+export const WallPadding = {...wall,
+};
