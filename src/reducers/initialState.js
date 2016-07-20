@@ -4,7 +4,7 @@ export default {
   game: {
     board: generateBoard(),
     player: {
-      coordinates: [70, 70],
+      coordinates: [5, 5],
       xp: 0,
       level: 1,
       health: 10,
