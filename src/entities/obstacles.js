@@ -5,7 +5,7 @@ const wall = {
   displayCharacter: '&block',
   className: '',
   type: obstacleEntity
-}
+};
 
 export const wallTypes = [
   {...wall, className: 'wall1'},

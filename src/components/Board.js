@@ -17,7 +17,7 @@ const getState = (state) => {
 @connect(getState, null, null, {withRef: true})
 export default class Board extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.viewportSize = [7, 7];
 
@@ -28,10 +28,19 @@ export default class Board extends React.Component {
     };
   }
 
+  componentWillReceiveProps(newProps) {
+    this.setState({
+      board: newProps.board,
+      playerCoordinates: newProps.playerCoordinates,
+      viewport: this.shiftViewport(newProps.board, newProps.playerCoordinates, calculateMovementDelta(this.state.playerCoordinates, newProps.playerCoordinates))
+    });
+  }
+
   generateViewportDeltas(delta) {
     const halfWidth = Math.floor(this.viewportSize[0] / 2);
     const halfHeight = Math.floor(this.viewportSize[1] / 2);
 
+    console.log(delta);
     let viewportDeltas = [];
     for (let row = (halfWidth * -1 + 1); row < halfWidth; row++) {
       viewportDeltas.push([]);
@@ -46,38 +55,30 @@ export default class Board extends React.Component {
 
   shiftViewport(board, playerCoordinates, delta=[0, 0]) {
     const viewportDeltas = this.generateViewportDeltas(delta);
-    
+
     // can eliminate generateViewportDeltas and place that stuff here?
-    let viewport = []
+    let viewport = [];
     for (let row = 0; row < viewportDeltas.length; row++) {
       viewport.push([]);
       for (let col = 0; col < viewportDeltas[0].length; col++) {
-        let currRow = playerCoordinates[0] + viewportDeltas[row][col][0]
-        let currCol = playerCoordinates[1] + viewportDeltas[row][col][1]
-        viewport[row].push(board[currRow][currCol])
+        let currRow = playerCoordinates[0] + viewportDeltas[row][col][0];
+        let currCol = playerCoordinates[1] + viewportDeltas[row][col][1];
+        viewport[row].push(board[currRow][currCol]);
       }
     }
 
     return viewport;
   }
 
-  componentWillReceiveProps(newProps) {
-    this.setState({
-      board: newProps.board,
-      playerCoordinates: newProps.playerCoordinates,
-      viewport: this.shiftViewport(newProps.board, newProps.playerCoordinates, calculateMovementDelta(this.state.playerCoordinates, newProps.playerCoordinates))
-    });
-  }
-
   render() {
-    const rowLength = this.state.viewport.length
+    const rowLength = this.state.viewport.length;
     const colLength = this.state.viewport[0].length;
 
     let rowElements = [];
     for (let row = 0; row < rowLength; row++) {
       rowElements.push([]);
       for (let col = 0; col < colLength; col++) {
-        rowElements[row].push(<div className="square">{this.state.viewport[row][col].character}</div>)
+        rowElements[row].push(<div className="square">{this.state.viewport[row][col].character}</div>);
       }
     }
 

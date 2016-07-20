@@ -7,16 +7,16 @@ import { Floor } from '../entities/floor';
 export default function game(state = initialState.game, action) {
   switch (action.type) {
     case ATTACK: {
-      const playerAttackDamage = (state.player.damage * state.player.level)
+      const playerAttackDamage = (state.player.damage * state.player.level);
       let enemy = {...state.board[action.payload.coordinates[0]][action.payload.coordinates[1]]};
       let newBoard = _.cloneDeep(state.board);
-      
+
       const newEnemyHealth = enemy.health - playerAttackDamage;
       const enemyIsDead = newEnemyHealth <= 0;
-      
+
       const newPlayerHealth = state.player.health - enemy.attack;
       const playerIsDead = newPlayerHealth <= 0;
-      
+
       if (playerIsDead) {
         console.log("player died");
       } else if (enemyIsDead) {
@@ -27,13 +27,12 @@ export default function game(state = initialState.game, action) {
         console.log("enemy was damaged: " + enemy.health);
         enemy.health -= playerAttackDamage;
       }
-      
+
       newBoard[action.payload.coordinates[0]][action.payload.coordinates[1]] = enemy;
       return {
         ...state,
-        board: newBoard 
+        board: newBoard
       };
-      break;
     }
     case MOVE: {
       let newBoard = _.cloneDeep(state.board);
@@ -50,7 +49,6 @@ export default function game(state = initialState.game, action) {
         board: newBoard,
         player: {...state.player, coordinates: newCoordinates}
       };
-      break;
     }
 
     default:

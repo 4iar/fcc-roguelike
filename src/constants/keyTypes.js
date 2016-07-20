@@ -3,5 +3,4 @@ export const movementKeys = {
   38: 'up',
   39: 'right',
   40: 'down'
-}
-
+};

@@ -9,5 +9,5 @@ export default function getCoordinatesInDirection (coordinates, direction) {
   return [
     directionToCoordinateDelta[direction][0] + coordinates[0],
     directionToCoordinateDelta[direction][1] + coordinates[1],
-  ]
+  ];
 }

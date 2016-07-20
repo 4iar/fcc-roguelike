@@ -8,7 +8,7 @@ const enemy = {
   className: '',
   character: '',
   type: enemyEntity
-}
+};
 
 export const DollarEnemy = {...enemy,
   name: 'Big Money',
