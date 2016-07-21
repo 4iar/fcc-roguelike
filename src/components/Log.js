@@ -1,6 +1,7 @@
 import React from 'react';
 import { Col } from 'react-bootstrap';
 
+import '../styles/log.scss';
 
 export default class Log extends React.Component {
   render() {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Col } from 'react-bootstrap';
 
+import '../styles/stats.scss';
 
 export default class Stats extends React.Component {
   render() {
