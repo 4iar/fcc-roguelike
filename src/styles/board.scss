@@ -4,13 +4,11 @@
   height: 50vh;
   min-width: 100%;
 
-  display: inline-block;
+  display: flex;
 }
 
 .row {
   display: flex;
-
-  height: 10%;
 }
 
 .square {
@@ -19,12 +17,15 @@
   box-sizing: border-box;
 
   text-align: center;
+  vertical-align: middle;
+  font-size: 1.2em;
 
-  height: 10%;
-  max-width: 5%;
-  min-width: 5%;
+  flex: 1;
 
-  background-color: gray;
-  border: solid .1em lightblue;
-  padding: 2%;
+  background-color: #16A085;
+  margin-bottom: -0.55%;
+  margin-left: -0.25%;
+  margin-right: -0.25%;
+
+  overflow: hidden;
 }
