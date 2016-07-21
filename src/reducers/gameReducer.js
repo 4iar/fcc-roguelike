@@ -54,7 +54,10 @@ export default function game(state = initialState.game, action) {
       const newLevelNumber = state.levelNumber + action.payload.direction;
       const previousCoordinates = state.player.coordinates;
 
-      const directionKey = {'-1': 'down', '1': 'up'}['' + action.payload.direction];
+      // TODO: make this less silly
+      // switch direction for coordinates because we want to ascend to a down ladder
+      // rather than ascending to another up ladder + vice-versa
+      const directionKey = {'-1': 'up', '1': 'down'}['' + action.payload.direction];
       const newCoordinates = state.levels[newLevelNumber].spawnCoordinates[directionKey];
 
       // set the player character on the new board
