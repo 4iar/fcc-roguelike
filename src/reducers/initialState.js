@@ -1,10 +1,13 @@
-import generateBoard from '../utils/generateBoard';
+import generateLevels from '../utils/generateLevels';
 
+let levels = generateLevels();
 export default {
   game: {
-    board: generateBoard(),
+    board: levels[0].board,
+    levels,
+    levelNumber: 0,
     player: {
-      coordinates: [5, 5],
+      coordinates: levels[0].spawnCoordinates.player,
       xp: 0,
       level: 1,
       health: 10,
