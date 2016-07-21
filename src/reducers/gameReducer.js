@@ -51,20 +51,20 @@ export default function game(state = initialState.game, action) {
       };
     }
     case CHANGELEVEL: {
-      const newLevel = state.levelNumber + action.payload.direction;
+      const newLevelNumber = state.levelNumber + action.payload.direction;
       const previousCoordinates = state.player.coordinates;
 
       const directionKey = {'-1': 'down', '1': 'up'}['' + action.payload.direction];
-      const newCoordinates = state.levels[newLevel].spawnCoordinates[directionKey];
+      const newCoordinates = state.levels[newLevelNumber].spawnCoordinates[directionKey];
 
       // set the player character on the new board
-      let newBoard = state.levels[newLevel].board;
+      let newBoard = state.levels[newLevelNumber].board;
       newBoard[newCoordinates[0]][newCoordinates[1]] = state.board[previousCoordinates[0]][previousCoordinates[1]];
 
       return {
         ...state,
         board: newBoard,
-        levelNumber: newLevel,
+        levelNumber: newLevelNumber,
         player: {
           ...state.player,
           coordinates: newCoordinates
