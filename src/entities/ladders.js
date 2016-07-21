@@ -7,14 +7,14 @@ const ladder = {
 
 export const LadderUp = {
   ...ladder,
-  direction: '+1',
+  direction: +1,
   character: '↥',
   className: ladder.className + '-up'
 }
 
 export const LadderDown = {
   ...ladder,
-  direction: '-1',
+  direction: -1,
   character: '↧',
   className: ladder.className + '-down'
 }
