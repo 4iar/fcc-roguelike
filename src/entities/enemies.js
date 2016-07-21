@@ -15,5 +15,5 @@ export const DollarEnemy = {...enemy,
   health: 5,
   damage: 1,
   className: 'enemy',
-  character: '&dollar;'
+  character: '$'
 };
