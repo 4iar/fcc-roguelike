@@ -60,10 +60,16 @@ export default function game(state = initialState.game, action) {
       // set the player character on the new board
       let newBoard = state.levels[newLevelNumber].board;
       newBoard[newCoordinates[0]][newCoordinates[1]] = state.board[previousCoordinates[0]][previousCoordinates[1]];
-
+      
+      let newCurrentBoard = state.board;
+      newCurrentBoard[previousCoordinates[0], previousCoordinates[1]] = Floor;
+      let newLevels = state.levels;
+      newLevels[state.levelNumber] = {...state.levels[state.levelNumber], newCurrentBoard};
+      
       return {
         ...state,
         board: newBoard,
+        levels: newLevels,
         levelNumber: newLevelNumber,
         player: {
           ...state.player,
