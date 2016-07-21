@@ -1,4 +1,4 @@
-import { ATTACK, MOVE } from '../constants/actionTypes';
+import { ATTACK, MOVE, CHANGELEVEL } from '../constants/actionTypes';
 
 
 export function attack(coordinates) {
@@ -15,6 +15,15 @@ export function move(coordinates) {
     type: MOVE,
     payload: {
       coordinates
+    }
+  };
+}
+
+export function changeLevel(direction) {
+  return {
+    type: CHANGELEVEL,
+    payload: {
+      direction
     }
   };
 }
