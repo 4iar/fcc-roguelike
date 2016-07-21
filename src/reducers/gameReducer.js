@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 import initialState from './initialState';
-import { ATTACK, MOVE } from '../constants/actionTypes';
+import { ATTACK, MOVE, CHANGELEVEL } from '../constants/actionTypes';
 import { Floor } from '../entities/floor';
 
 export default function game(state = initialState.game, action) {
@@ -50,7 +50,27 @@ export default function game(state = initialState.game, action) {
         player: {...state.player, coordinates: newCoordinates}
       };
     }
+    case CHANGELEVEL: {
+      const newLevel = state.levelNumber + action.payload.direction;
+      const previousCoordinates = state.player.coordinates;
 
+      const directionKey = {'-1': 'down', '1': 'up'}['' + action.payload.direction];
+      const newCoordinates = state.levels[newLevel].spawnCoordinates[directionKey];
+
+      // set the player character on the new board
+      let newBoard = state.levels[newLevel].board;
+      newBoard[newCoordinates[0]][newCoordinates[1]] = state.board[previousCoordinates[0]][previousCoordinates[1]];
+
+      return {
+        ...state,
+        board: newBoard,
+        levelNumber: newLevel,
+        player: {
+          ...state.player,
+          coordinates: newCoordinates
+        }
+      };
+    }
     default:
       return state;
   }
