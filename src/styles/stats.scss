@@ -1,4 +1,12 @@
-h2 {
+#status {
+  display: flex;
+}
+
+p {
+  flex: 1;
+  display: inline-block;
+
   color: white;
+  text-align: center;
 }
 

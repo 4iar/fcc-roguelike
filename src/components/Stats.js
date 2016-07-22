@@ -49,10 +49,29 @@ export default class Stats extends React.Component {
 
   render() {
     return (
-      <Col md={12}>
-        <h2>
-          Game stats
-        </h2>
+      <Col md={11}>
+        <div id="status">
+
+          <p class="status-value">
+            <FontAwesome name="map-marker" /> {this.state.coordinates[0]} : {this.state.coordinates[1]} ({this.state.levelNumber}) 
+          </p>
+          
+          <p class="status-value">
+            <FontAwesome name="heart" /> {this.state.health}
+          </p>
+
+          <p class="status-value">
+            <FontAwesome name="level-up" /> {this.state.xp}/100 ({this.state.level})
+          </p>
+          
+          <p class="status-value">
+            <FontAwesome name="legal " /> {this.state.weapon.name} ({this.state.weapon.damage})
+          </p>
+          
+          <p class="status-value">
+            <FontAwesome name="shield " /> {this.state.armour.name} ({this.state.armour.defence})
+          </p>
+        </div>
       </Col>
     );
   }
