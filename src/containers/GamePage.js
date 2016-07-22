@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { attack, move, changeLevel, pickUpItem } from '../actions/gameActions';
 import { movementKeys } from '../constants/keyTypes';
-import { enemyEntity, obstacleEntity, floorEntity, ladderEntity, weaponEntity, armourEntity } from '../constants/entityTypes';
+import { enemyEntity, obstacleEntity, floorEntity, ladderEntity, weaponEntity, armourEntity, potionEntity } from '../constants/entityTypes';
 import getCoordinatesInDirection from '../utils/getCoordinatesInDirection';
 import outOfBounds from '../utils/outOfBounds';
 
@@ -60,6 +60,7 @@ export default class GamePage extends React.Component {
           break;
         case weaponEntity:
         case armourEntity:
+        case potionEntity:
           console.log("got an item : " + entity.name);
           this.props.pickUpItem(entity); 
           break;

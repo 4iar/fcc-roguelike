@@ -1,5 +1,5 @@
-import { ATTACK, MOVE, CHANGELEVEL, PICKUPWEAPON, PICKUPARMOUR } from '../constants/actionTypes';
-import { weaponEntity, armourEntity } from '../constants/entityTypes';
+import { ATTACK, MOVE, CHANGELEVEL, PICKUPWEAPON, PICKUPARMOUR, PICKUPPOTION } from '../constants/actionTypes';
+import { weaponEntity, armourEntity, potionEntity } from '../constants/entityTypes';
 
 
 export function attack(coordinates) {
@@ -33,6 +33,7 @@ export function pickUpItem(item) {
   let itemTypeMap = { }
   itemTypeMap[weaponEntity] = PICKUPWEAPON;
   itemTypeMap[armourEntity] = PICKUPARMOUR;
+  itemTypeMap[potionEntity] = PICKUPPOTION;
   return {
     type: itemTypeMap[item.type],
     payload: {
