@@ -13,7 +13,9 @@ export default {
       health: 10,
       damage: 5,
       criticalChance: 0.3,
-      items: {}
+      items: {},
+      weapon: {name: 'placeholderwep', damage: '5'},
+      armour: {name: 'placeholderarmour', defence: '15'}
     }
   }
 };
