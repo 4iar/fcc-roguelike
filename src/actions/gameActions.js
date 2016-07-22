@@ -1,4 +1,4 @@
-import { ATTACK, MOVE, CHANGELEVEL } from '../constants/actionTypes';
+import { ATTACK, MOVE, CHANGELEVEL, PICKUPITEM } from '../constants/actionTypes';
 
 
 export function attack(coordinates) {
@@ -24,6 +24,15 @@ export function changeLevel(direction) {
     type: CHANGELEVEL,
     payload: {
       direction
+    }
+  };
+}
+
+export function pickUpItem(item) {
+  return {
+    type: PICKUPITEM,
+    payload: {
+      item
     }
   };
 }

@@ -2,9 +2,9 @@ import React from 'react';
 import { Row, Grid } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
-import { attack, move, changeLevel } from '../actions/gameActions';
+import { attack, move, changeLevel, pickUpItem } from '../actions/gameActions';
 import { movementKeys } from '../constants/keyTypes';
-import { enemyEntity, obstacleEntity, floorEntity, ladderEntity } from '../constants/entityTypes';
+import { enemyEntity, obstacleEntity, floorEntity, ladderEntity, weaponEntity } from '../constants/entityTypes';
 import getCoordinatesInDirection from '../utils/getCoordinatesInDirection';
 import outOfBounds from '../utils/outOfBounds';
 
@@ -20,7 +20,7 @@ const getState = (state) => {
   };
 };
 
-@connect(getState, {attack, move, changeLevel}, null, {withRef: true})
+@connect(getState, {attack, move, changeLevel, pickUpItem}, null, {withRef: true})
 export default class GamePage extends React.Component {
   constructor(props) {
     super(props);
@@ -57,6 +57,10 @@ export default class GamePage extends React.Component {
         case ladderEntity:
           console.log("changing level: " + entity.direction);
           this.props.changeLevel(entity.direction);
+          break;
+        case weaponEntity:
+          console.log("got a weapon: " + entity.name);
+          this.props.pickUpItem(entity); 
           break;
         default:
           console.log("dunno");

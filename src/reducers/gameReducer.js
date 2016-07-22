@@ -1,13 +1,13 @@
 import _ from 'lodash';
 
 import initialState from './initialState';
-import { ATTACK, MOVE, CHANGELEVEL } from '../constants/actionTypes';
+import { ATTACK, MOVE, CHANGELEVEL, PICKUPITEM } from '../constants/actionTypes';
 import { Floor } from '../entities/floor';
 
 export default function game(state = initialState.game, action) {
   switch (action.type) {
     case ATTACK: {
-      const playerAttackDamage = (state.player.damage * state.player.level);
+      const playerAttackDamage = (state.player.damage * state.player.level) + state.player.weapon.damage;
       let enemy = {...state.board[action.payload.coordinates[0]][action.payload.coordinates[1]]};
       let newBoard = _.cloneDeep(state.board);
 
@@ -77,6 +77,15 @@ export default function game(state = initialState.game, action) {
         player: {
           ...state.player,
           coordinates: newCoordinates
+        }
+      };
+    }
+    case PICKUPITEM: {
+      return {
+        ...state,
+        player: {
+          ...state.player,
+          weapon: action.payload.item
         }
       };
     }
