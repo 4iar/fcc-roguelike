@@ -7,6 +7,8 @@ import { Floor } from '../entities/floor';
 export default function game(state = initialState.game, action) {
   switch (action.type) {
     case ATTACK: {
+      let newPlayerXp = state.player.xp;
+      let newPlayerLevel = state.player.level;
       let newEnemy = {...state.board[action.payload.coordinates[0]][action.payload.coordinates[1]]};
       const playerAttackDamage = (state.player.damage * state.player.level) + state.player.weapon.damage;
       const enemyAttackDamage = Math.max(0, newEnemy.damage - state.player.armour.defence);
@@ -20,6 +22,12 @@ export default function game(state = initialState.game, action) {
       if (!enemyIsDead) {
         newPlayerHealth -= enemyAttackDamage;
       } else {
+        newPlayerXp += newEnemy.xpOnDeath;
+        if (newPlayerXp >= 100) {
+          newPlayerXp = (newPlayerXp - 100);
+          newPlayerLevel += 1;
+        }
+        
         newEnemy = Floor;
       }
 
@@ -29,6 +37,8 @@ export default function game(state = initialState.game, action) {
         board: newBoard,
         player: {
           ...state.player,
+          level: newPlayerLevel,
+          xp: newPlayerXp,
           health: newPlayerHealth
         }
       };
