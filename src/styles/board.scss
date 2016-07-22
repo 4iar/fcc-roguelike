@@ -5,6 +5,7 @@
   min-width: 100%;
 
   display: flex;
+
 }
 
 .row {
@@ -29,3 +30,10 @@
 
   overflow: hidden;
 }
+
+.fog {
+  position: relative;
+  background: black;
+  color: black;
+}
+

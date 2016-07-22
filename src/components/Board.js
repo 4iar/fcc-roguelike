@@ -16,10 +16,11 @@ const getState = (state) => {
 export default class Board extends React.Component {
   constructor(props) {
     super(props);
-
+    
     this.state = {
       board: this.props.board,
       playerCoordinates: this.props.playerCoordinates,
+      fogDiameter: 9
     };
   }
 
@@ -38,7 +39,14 @@ export default class Board extends React.Component {
     for (let row = 0; row < rowLength; row++) {
       rowElements.push([]);
       for (let col = 0; col < colLength; col++) {
-        rowElements[row].push(<div className="square">{this.state.board[row][col].character}</div>);
+        const playerDistance = Math.abs(this.state.playerCoordinates[0] - row) + Math.abs(this.state.playerCoordinates[1] - col);
+        let className;
+        if (playerDistance > this.state.fogDiameter) {
+          className = 'square fog';
+        } else {
+          className = 'square'
+        }
+        rowElements[row].push(<div className={className}>{this.state.board[row][col].character}</div>);
       }
     }
 
