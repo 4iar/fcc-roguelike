@@ -1,6 +1,7 @@
 import generateLevels from '../utils/generateLevels';
 
 import { WoodenPokerWeapon } from '../entities/weapons';
+import { LeafArmour } from '../entities/armours';
 
 let levels = generateLevels();
 export default {
@@ -17,7 +18,7 @@ export default {
       criticalChance: 0.3,
       items: {},
       weapon: WoodenPokerWeapon,
-      armour: {name: 'placeholderarmour', defence: 15}
+      armour: LeafArmour,
     }
   }
 };

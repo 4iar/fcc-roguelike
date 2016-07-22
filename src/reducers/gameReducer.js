@@ -1,20 +1,22 @@
 import _ from 'lodash';
 
 import initialState from './initialState';
-import { ATTACK, MOVE, CHANGELEVEL, PICKUPWEAPON } from '../constants/actionTypes';
+import { ATTACK, MOVE, CHANGELEVEL, PICKUPWEAPON, PICKUPARMOUR } from '../constants/actionTypes';
 import { Floor } from '../entities/floor';
 
 export default function game(state = initialState.game, action) {
   switch (action.type) {
     case ATTACK: {
-      const playerAttackDamage = (state.player.damage * state.player.level) + state.player.weapon.damage;
       let enemy = {...state.board[action.payload.coordinates[0]][action.payload.coordinates[1]]};
+      const playerAttackDamage = (state.player.damage * state.player.level) + state.player.weapon.damage;
+      const enemyAttackDamage = Math.max(enemy.damage - state.player.armour.defence);
+      
       let newBoard = _.cloneDeep(state.board);
 
       const newEnemyHealth = enemy.health - playerAttackDamage;
       const enemyIsDead = newEnemyHealth <= 0;
 
-      const newPlayerHealth = state.player.health - enemy.attack;
+      const newPlayerHealth = state.player.health - enemyAttackDamage;
       const playerIsDead = newPlayerHealth <= 0;
 
       if (playerIsDead) {
@@ -86,6 +88,15 @@ export default function game(state = initialState.game, action) {
         player: {
           ...state.player,
           weapon: action.payload.item
+        }
+      };
+    }
+    case PICKUPARMOUR: {
+      return {
+        ...state,
+        player: {
+          ...state.player,
+          armour: action.payload.item
         }
       };
     }
