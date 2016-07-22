@@ -7,33 +7,30 @@ import { Floor } from '../entities/floor';
 export default function game(state = initialState.game, action) {
   switch (action.type) {
     case ATTACK: {
-      let enemy = {...state.board[action.payload.coordinates[0]][action.payload.coordinates[1]]};
+      let newEnemy = {...state.board[action.payload.coordinates[0]][action.payload.coordinates[1]]};
       const playerAttackDamage = (state.player.damage * state.player.level) + state.player.weapon.damage;
-      const enemyAttackDamage = Math.max(enemy.damage - state.player.armour.defence);
+      const enemyAttackDamage = Math.max(0, newEnemy.damage - state.player.armour.defence);
 
       let newBoard = _.cloneDeep(state.board);
 
-      const newEnemyHealth = enemy.health - playerAttackDamage;
-      const enemyIsDead = newEnemyHealth <= 0;
+      newEnemy.health -= playerAttackDamage;
+      const enemyIsDead = newEnemy.health <= 0;
+      let newPlayerHealth = state.player.health;
 
-      const newPlayerHealth = state.player.health - enemyAttackDamage;
-      const playerIsDead = newPlayerHealth <= 0;
-
-      if (playerIsDead) {
-        console.log("player died");
-      } else if (enemyIsDead) {
-        console.log("enemy is dead");
-        enemy = Floor;
+      if (!enemyIsDead) {
+        newPlayerHealth -= enemyAttackDamage;
       } else {
-        // enemy is just damaged
-        console.log("enemy was damaged: " + enemy.health);
-        enemy.health -= playerAttackDamage;
+        newEnemy = Floor;
       }
 
-      newBoard[action.payload.coordinates[0]][action.payload.coordinates[1]] = enemy;
+      newBoard[action.payload.coordinates[0]][action.payload.coordinates[1]] = newEnemy;
       return {
         ...state,
-        board: newBoard
+        board: newBoard,
+        player: {
+          ...state.player,
+          health: newPlayerHealth
+        }
       };
     }
     case MOVE: {
