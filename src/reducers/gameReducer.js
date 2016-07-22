@@ -11,7 +11,7 @@ export default function game(state = initialState.game, action) {
       let newPlayerLevel = state.player.level;
       let newEnemy = {...state.board[action.payload.coordinates[0]][action.payload.coordinates[1]]};
       const playerAttackDamage = (state.player.damage * state.player.level) + state.player.weapon.damage;
-      const enemyAttackDamage = Math.max(0, newEnemy.damage - state.player.armour.defence);
+      const enemyAttackDamage = Math.max(0, (newEnemy.damage * (state.levelNumber + 2)) - (state.player.armour.defence * state.player.level));
 
       let newBoard = _.cloneDeep(state.board);
 
