@@ -1,5 +1,7 @@
 import _ from 'lodash';
 
+import * as Potions from '../entities/potions';
+
 import { LadderUp, LadderDown } from '../entities/ladders';
 import areNeighboursFloor from './areNeighboursFloor';
 
@@ -42,8 +44,26 @@ function populateLadders(level, ladders) {
   };
 }
 
+function populatePotions(board) {
+  for (let p in Potions) {
+    const Potion = Potions[p]
+    _.times(Potion.frequency, () => {
+      let coords = findRandomEmptyBoardLocation(board);
+      board[coords[0]][coords[1]] = _.clone(Potion);
+    });
+  }
+  return board;
+}
+
 export default function populateEntities(level, ladders={up: true, down: false}) {
   level = populateLadders(level, {up: true, down: true});
+  let board = level.board;
+  board = populatePotions(board);
 
-  return level;
+
+
+  return {
+    ...level,
+    board
+  };
 }
