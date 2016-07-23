@@ -4,6 +4,7 @@ import * as Potions from '../entities/potions';
 import { Armours } from '../entities/armours';
 import { Weapons } from '../entities/weapons';
 import { Enemies, BossEnemy } from '../entities/enemies';
+import { Player } from '../entities/player';
 
 import { LadderUp, LadderDown } from '../entities/ladders';
 import areNeighboursFloor from './areNeighboursFloor';
@@ -91,13 +92,33 @@ function populateArmourAndWeapons(board) {
   return board;
 }
 
-export default function populateEntities(level, ladders={up: true, down: false}, boss=false) {
+function populatePlayer(level) {
+  let board = level.board
+  
+  const coords = findRandomEmptyBoardLocation(board);
+  board[coords[0]][coords[1]] = _.clone(Player);
+
+  return {
+    ...level,
+    board,
+    spawnCoordinates: {
+      ...level.spawnCoordinates,
+      player: coords
+    }
+  };
+}
+
+export default function populateEntities(level, ladders={up: true, down: false}, boss=false, player=true) {
   level = populateLadders(level, {up: true, down: true});
+  if (player) {
+    level = populatePlayer(level, player);
+  }
+  
   let board = level.board;
   board = populatePotions(board);
   board = populateArmourAndWeapons(board);
   board = populateEnemies(board, boss);
-
+  
 
 
   return {
