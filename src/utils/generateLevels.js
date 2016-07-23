@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 import makeRect from './makeRect';
-import populateLadders from './populateLadders';
+import populateEntities from './populateEntities';
 import { floorEntity } from '../constants/entityTypes';
 
 import { Floor } from '../entities/floor';
@@ -43,7 +43,7 @@ function generateLevel() {
   const board = generateEmptyLevel();
   const centre = [Math.floor(50/2), Math.floor(50/2)];
   
-  let level = populateLadders({board}, {up: true, down: true});
+  let level = populateEntities({board}, {up: true, down: true});
   
   return {
     ...level,
