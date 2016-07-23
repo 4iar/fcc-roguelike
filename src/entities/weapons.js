@@ -22,3 +22,5 @@ export const AnalDirgeWeapon = {
   damage: 5,
   character: 'ad'
 }
+
+export const Weapons = [HattoriHanzoWeapon, AnalDirgeWeapon];

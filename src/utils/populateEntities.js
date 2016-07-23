@@ -1,6 +1,8 @@
 import _ from 'lodash';
 
 import * as Potions from '../entities/potions';
+import { Armours } from '../entities/armours';
+import { Weapons } from '../entities/weapons';
 
 import { LadderUp, LadderDown } from '../entities/ladders';
 import areNeighboursFloor from './areNeighboursFloor';
@@ -55,10 +57,27 @@ function populatePotions(board) {
   return board;
 }
 
+function populateArmourAndWeapons(board) {
+  [Armours, Weapons].forEach((Items) => {
+    for (let i in Items) {
+      const Item = Items[i];
+      const roll = _.random(0, 100);
+
+      if (roll <= Item.chance) {
+        let coords = findRandomEmptyBoardLocation(board);
+        board[coords[0]][coords[1]] = _.clone(Item);
+      }
+    }
+  });
+
+  return board;
+}
+
 export default function populateEntities(level, ladders={up: true, down: false}) {
   level = populateLadders(level, {up: true, down: true});
   let board = level.board;
   board = populatePotions(board);
+  board = populateArmourAndWeapons(board);
 
 
 

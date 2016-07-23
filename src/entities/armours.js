@@ -22,3 +22,4 @@ export const LeatherArmour = {
   defence: 5,
   character: 'cs'
 }
+export const Armours = [LeatherArmour, ShinyArmour, DiamondArmour];
