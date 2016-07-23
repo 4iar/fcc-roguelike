@@ -15,3 +15,17 @@ export const SmallPotion = {
   frequency: 2,
   name: 'Small Potion'
 }
+
+export const MediumPotion = {
+  ...Potion,
+  health: 15,
+  character: 'M',
+  name: 'Medium Potion'
+}
+
+export const LargePotion = {
+  ...Potion,
+  health: 20,
+  character: 'L',
+  name: 'Big Daddy Potion'
+}
