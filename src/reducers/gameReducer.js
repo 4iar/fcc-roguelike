@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 import initialState from './initialState';
-import { ATTACK, MOVE, CHANGELEVEL, PICKUPWEAPON, PICKUPARMOUR, PICKUPPOTION } from '../constants/actionTypes';
+import { ATTACK, MOVE, CHANGELEVEL, PICKUPWEAPON, PICKUPARMOUR, PICKUPPOTION, RESET } from '../constants/actionTypes';
 import { Floor } from '../entities/floor';
 
 export default function game(state = initialState.game, action) {
@@ -122,7 +122,9 @@ export default function game(state = initialState.game, action) {
         }
       }
     }
-
+    case RESET: {
+      return initialState;
+    }
     default:
       return state;
   }

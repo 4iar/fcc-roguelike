@@ -1,4 +1,4 @@
-import { ATTACK, MOVE, CHANGELEVEL, PICKUPWEAPON, PICKUPARMOUR, PICKUPPOTION } from '../constants/actionTypes';
+import { ATTACK, MOVE, CHANGELEVEL, PICKUPWEAPON, PICKUPARMOUR, PICKUPPOTION, RESET } from '../constants/actionTypes';
 import { weaponEntity, armourEntity, potionEntity } from '../constants/entityTypes';
 
 
@@ -41,3 +41,10 @@ export function pickUpItem(item) {
     }
   };
 }
+
+export function reset() {
+  return {
+    type: RESET
+  };
+}
+
