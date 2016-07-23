@@ -3,6 +3,7 @@ import _ from 'lodash';
 import * as Potions from '../entities/potions';
 import { Armours } from '../entities/armours';
 import { Weapons } from '../entities/weapons';
+import { Enemies, BossEnemy } from '../entities/enemies';
 
 import { LadderUp, LadderDown } from '../entities/ladders';
 import areNeighboursFloor from './areNeighboursFloor';
@@ -57,6 +58,23 @@ function populatePotions(board) {
   return board;
 }
 
+function populateEnemies(board, boss) {
+  for (let e in Enemies ) {
+    const Enemy = Enemies[e]
+    _.times(Enemy.frequency, () => {
+      let coords = findRandomEmptyBoardLocation(board);
+      board[coords[0]][coords[1]] = _.clone(Enemy);
+    });
+  }
+  
+  if (boss) {
+    let coords = findRandomEmptyBoardLocation(board);
+    board[coords[0]][coords[1]] = _.clone(BossEnemy);
+  }
+  
+  return board;
+}
+
 function populateArmourAndWeapons(board) {
   [Armours, Weapons].forEach((Items) => {
     for (let i in Items) {
@@ -73,11 +91,12 @@ function populateArmourAndWeapons(board) {
   return board;
 }
 
-export default function populateEntities(level, ladders={up: true, down: false}) {
+export default function populateEntities(level, ladders={up: true, down: false}, boss=false) {
   level = populateLadders(level, {up: true, down: true});
   let board = level.board;
   board = populatePotions(board);
   board = populateArmourAndWeapons(board);
+  board = populateEnemies(board, boss);
 
 
 
