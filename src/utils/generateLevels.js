@@ -1,5 +1,7 @@
 import _ from 'lodash';
 
+import populateLadders from './populateLadders';
+
 import { Floor } from '../entities/floor';
 import { Player } from '../entities/player';
 import { DollarEnemy }  from '../entities/enemies';
@@ -31,6 +33,7 @@ function generateLevel(ladders={up: false, down: false}) {
     board[ladderDownCoords[0]][ladderDownCoords[1]] = LadderDown;
     spawnCoordinates['down'] = [ladderDownCoords[0] - 1, ladderDownCoords[1]];
   }
+  populateLadders({board}, {up: true, down: true});
   
   return {
     board,
