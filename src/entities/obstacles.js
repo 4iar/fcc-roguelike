@@ -1,14 +1,9 @@
 import { obstacleEntity } from '../constants/entityTypes';
 
-const wall = {
+export const Wall = {
   name: 'wall',
   displayCharacter: '&block',
-  className: '',
-  type: obstacleEntity
+  className: 'wall',
+  type: obstacleEntity,
+  character: 'x'
 };
-
-export const wallTypes = [
-  {...wall, className: 'wall1'},
-  {...wall, className: 'wall2'},
-  {...wall, className: 'wall3'},
-];
