@@ -11,6 +11,7 @@ import outOfBounds from '../utils/outOfBounds';
 import Board from '../components/Board';
 import Log from '../components/Log';
 import Stats from '../components/Stats';
+import LoseWinModal from '../components/LoseWinModal';
 
 
 const getState = (state) => {
@@ -73,7 +74,8 @@ export default class GamePage extends React.Component {
   render() {
     return (
       <Grid>
-
+        <LoseWinModal />
+        
         <Row>
           <Stats />
         </Row>
