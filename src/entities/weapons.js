@@ -5,6 +5,7 @@ const Weapon = {
   name: 'Weapon',
   damage: 1,
   character: 'w',
+  chance: 50,
   className: 'weapon'
 };
 

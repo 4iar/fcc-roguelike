@@ -5,6 +5,7 @@ const Armour = {
   name: 'armour',
   defence: 1,
   character: 'a',
+  chance: 50,
   className: 'armour'
 }
 
