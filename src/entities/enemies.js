@@ -8,6 +8,7 @@ const Enemy = {
   className: 'enemy',
   character: '',
   type: enemyEntity,
+  boss: false
 };
 
 export const DollarEnemy = {
@@ -17,3 +18,12 @@ export const DollarEnemy = {
   damage: 1,
   character: '$'
 };
+
+export const BigBossEnemy = {
+  ...Enemy,
+  name: 'Big Boss',
+  health: 5,
+  damage: 20,
+  character: 'B',
+  boss: true
+}

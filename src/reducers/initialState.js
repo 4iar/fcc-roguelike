@@ -19,6 +19,7 @@ export default {
       items: {},
       weapon: WoodenPokerWeapon,
       armour: LeafArmour,
+      bossKilled: false
     }
   }
 };

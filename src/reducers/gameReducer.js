@@ -7,6 +7,7 @@ import { Floor } from '../entities/floor';
 export default function game(state = initialState.game, action) {
   switch (action.type) {
     case ATTACK: {
+      let newBossKilled = state.bossKilled;
       let newPlayerXp = state.player.xp;
       let newPlayerLevel = state.player.level;
       let newEnemy = {...state.board[action.payload.coordinates[0]][action.payload.coordinates[1]]};
@@ -28,6 +29,10 @@ export default function game(state = initialState.game, action) {
           newPlayerLevel += 1;
         }
         
+        if (newEnemy.boss) {
+          newBossKilled = true; 
+        }
+        
         newEnemy = Floor;
       }
 
@@ -35,6 +40,7 @@ export default function game(state = initialState.game, action) {
       return {
         ...state,
         board: newBoard,
+        bossKilled: newBossKilled,
         player: {
           ...state.player,
           level: newPlayerLevel,
