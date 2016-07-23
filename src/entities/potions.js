@@ -5,10 +5,13 @@ const Potion = {
   health: 10,
   className: 'potion',
   character: 'p',
-  name: 'potion'
+  name: 'potion',
+  frequency: 1
 }
 
 export const SmallPotion = {
   ...Potion,
+  character: 'S',
+  frequency: 2,
   name: 'Small Potion'
 }
