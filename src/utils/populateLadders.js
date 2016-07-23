@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 import { LadderUp, LadderDown } from '../entities/ladders';
 import areNeighboursFloor from './areNeighboursFloor';
 
@@ -34,7 +36,8 @@ export default function populateLadders(level, ladders={up: false, down: false})
     board: board,
     spawnCoordinates: {
       ...level.spawnCoordinates,
-      spawnCoordinates
+      up: spawnCoordinates['up'],
+      down: spawnCoordinates['down']
     }
   };
 }
