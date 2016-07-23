@@ -123,7 +123,7 @@ export default function game(state = initialState.game, action) {
       }
     }
     case RESET: {
-      return initialState;
+      return initialState.game;
     }
     default:
       return state;
