@@ -9,6 +9,7 @@ export default {
     board: levels[0].board,
     levels,
     levelNumber: 0,
+    bossKilled: false,
     player: {
       coordinates: levels[0].spawnCoordinates.player,
       xp: 0,
@@ -19,7 +20,6 @@ export default {
       items: {},
       weapon: WoodenPokerWeapon,
       armour: LeafArmour,
-      bossKilled: false
     }
   }
 };
