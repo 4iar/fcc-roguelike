@@ -49,6 +49,17 @@ export default class LoseWinModal extends React.Component {
   }
   
   render() {
+    const title = {
+      won: 'You won!',
+      lost: 'You lost :('
+    }
+    
+    const body = {
+      won: 'Big Boss was defeated',
+      lost: 'Big Boss remains undefeated. Try again.'
+    }
+    
+    
     return (
       <div>
         <Modal
@@ -57,12 +68,12 @@ export default class LoseWinModal extends React.Component {
         >
           <Modal.Header>
             <Modal.Title>
-              Outcome
+              {title[this.state.outcome]}
             </Modal.Title>
           </Modal.Header>
 
           <Modal.Body>
-            Outcome details
+            {body[this.state.outcome]}
           </Modal.Body>
 
           <Modal.Footer>
