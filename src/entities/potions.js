@@ -29,3 +29,5 @@ export const LargePotion = {
   character: 'L',
   name: 'Big Daddy Potion'
 }
+
+export const Potions = [SmallPotion, MediumPotion, LargePotion];

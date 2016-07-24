@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-import * as Potions from '../entities/potions';
+import { Potions } from '../entities/potions';
 import { Armours } from '../entities/armours';
 import { Weapons } from '../entities/weapons';
 import { Enemies, BossEnemy } from '../entities/enemies';
