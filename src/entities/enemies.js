@@ -16,7 +16,8 @@ export const DollarEnemy = {
   ...Enemy,
   name: 'Big Money',
   health: 15,
-  damage: 1,
+  damage: 3,
+  frequency: 10,
   character: '$'
 };
 
@@ -24,15 +25,15 @@ export const QuestionEnemy = {
   ...Enemy,
   name: 'Upside Down',
   health: 25,
-  damage: 1,
+  damage: 5,
   character: '¿'
 };
 
 export const BossEnemy = {
   ...Enemy,
   name: 'Big Boss',
-  health: 200,
-  damage: 120,
+  health: 50,
+  damage: 10,
   frequency: 1,
   character: '💀',
   boss: true

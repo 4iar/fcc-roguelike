@@ -15,13 +15,17 @@ export default function game(state = initialState.game, action) {
       const playerAttackDamage = Math.ceil((action.payload.multipliers.player
           * state.player.damage
           * (1 + (state.player.level/10))
-        ) + state.player.weapon.damage);
+        ) *
+        (1 + (state.player.weapon.damage/8))
+      );
 
-      const enemyAttackDamage = Math.max(0, Math.ceil(newEnemy.damage
+      const enemyAttackDamage = Math.max(0, Math.ceil((newEnemy.damage
           * action.payload.multipliers.enemy
-          * (state.levelNumber + 3)
-        ) - (state.player.armour.defence
-        * state.player.level)
+          * (1 + (state.levelNumber/8))
+        ) - (
+          (state.player.armour.defence / 8)
+          * (1 + (state.player.level/6))
+        ))
       );
 
       let newBoard = _.cloneDeep(state.board);
@@ -38,19 +42,19 @@ export default function game(state = initialState.game, action) {
           newPlayerXp = (newPlayerXp - 100);
           newPlayerLevel += 1;
         }
-        
+
         if (newEnemy.boss) {
-          newBossKilled = true; 
+          newBossKilled = true;
         }
-        
+
         newEnemy = Floor;
       }
 
       newBoard[action.payload.coordinates[0]][action.payload.coordinates[1]] = newEnemy;
-      
+
       let newLevels = state.levels;
       newLevels[state.levelNumber].board = newBoard;
-      
+
       return {
         ...state,
         board: newBoard,
@@ -112,10 +116,10 @@ export default function game(state = initialState.game, action) {
     case PICKUPWEAPON: {
       let newBoard = _.cloneDeep(state.board);
       newBoard[action.payload.coordinates[0]][action.payload.coordinates[1]] = Floor;
-      
+
       let newLevels = state.levels;
       newLevels[state.levelNumber].board = newBoard;
-      
+
       return {
         ...state,
         board: newBoard,
@@ -136,7 +140,7 @@ export default function game(state = initialState.game, action) {
       return {
         ...state,
         levels: newLevels,
-        board: newBoard, 
+        board: newBoard,
         player: {
           ...state.player,
           armour: action.payload.item
@@ -146,10 +150,10 @@ export default function game(state = initialState.game, action) {
     case PICKUPPOTION: {
       let newBoard = _.cloneDeep(state.board);
       newBoard[action.payload.coordinates[0]][action.payload.coordinates[1]] = Floor;
-      
+
       let newLevels = state.levels;
       newLevels[state.levelNumber].board = newBoard;
-      
+
       return {
         ...state,
         board: newBoard,
@@ -165,7 +169,7 @@ export default function game(state = initialState.game, action) {
       newState.levels = action.payload.levels;
       newState.board = newState.levels[0].board;
       newState.player.coordinates = newState.levels[0].spawnCoordinates.player;
-      
+
       return newState;
     }
     default:

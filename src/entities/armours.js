@@ -20,7 +20,7 @@ export const LeatherArmour = {
   ...Armour,
   name: 'Leather Catsuit',
   chance: 50,
-  defence: 5,
+  defence: 3,
   character: 'a'
 }
 
@@ -28,15 +28,15 @@ export const ShinyArmour = {
   ...Armour,
   name: 'Shiny Pantaloons',
   chance: 25,
-  defence: 10,
+  defence: 5,
   character: 'A'
 }
 
 export const DiamondArmour = {
   ...Armour,
   name: 'Diamond Heart',
-  chance: 2,
-  defence: 100,
+  chance: 20,
+  defence: 7,
   character: 'A'
 }
 

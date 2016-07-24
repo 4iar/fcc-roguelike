@@ -14,7 +14,7 @@ export default {
       coordinates: levels[0].spawnCoordinates.player,
       xp: 0,
       level: 1,
-      health: 10,
+      health: 25,
       damage: 5,
       criticalChance: 0.3,
       items: {},
