@@ -1,0 +1,2 @@
+#board{background-color:red;height:50vh;min-width:100%}#board,.row{display:flex}.square{box-sizing:border-box;text-align:center;vertical-align:middle;font-size:1.2em;flex:1;background-color:#16a085;margin-bottom:-.55%;margin-left:-.25%;margin-right:-.25%;overflow:hidden}.fog{background:#000}.enemy{color:#c23b22}.potion{color:#4fba00}.armour,.weapon{color:#966fd6}#status{display:flex}p{flex:1;display:inline-block;color:#fff;text-align:center}body{background-color:#333}
+/*# sourceMappingURL=main.6ce8e2cb0b4ceda6f657d67aca597a78.css.map*/
