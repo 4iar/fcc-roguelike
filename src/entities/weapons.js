@@ -5,6 +5,7 @@ const Weapon = {
   name: 'Weapon',
   damage: 1,
   character: 'w',
+  chance: 50,
   className: 'weapon'
 };
 
@@ -12,12 +13,23 @@ export const WoodenPokerWeapon = {
   ...Weapon,
   name: 'Wooden Poker',
   damage: 2,
-  character: 'wp'
+  character: 'w'
+}
+
+export const HattoriHanzoWeapon = {
+  ...Weapon,
+  name: 'Hattori Hanzo Sword',
+  damage: 20,
+  chance: 35,
+  character: 'w'
 }
 
 export const AnalDirgeWeapon = {
   ...Weapon,
   name: 'Anal Dirge',
-  damage: 5,
-  character: 'ad'
+  damage: 70,
+  chance: 2,
+  character: 'W'
 }
+
+export const Weapons = [HattoriHanzoWeapon, AnalDirgeWeapon];

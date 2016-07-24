@@ -1,54 +1,56 @@
 import _ from 'lodash';
 
+import makeRect from './makeRect';
+import populateEntities from './populateEntities';
+import { floorEntity } from '../constants/entityTypes';
+
 import { Floor } from '../entities/floor';
-import { Player } from '../entities/player';
-import { DollarEnemy }  from '../entities/enemies';
-import { LadderUp, LadderDown } from '../entities/ladders';
+import { Wall } from '../entities/obstacles';
 
 const BOARD_DIMENSIONS = [50, 50];
 const NUMBER_OF_LEVELS = 3;
 
-function generateLevel(ladders={up: false, down: false}) {
-  let spawnCoordinates = [];
-
+function generateEmptyLevel() {
   let board = [];
   for (let row = 0; row < BOARD_DIMENSIONS[0]; row++) {
     board.push([]);
     for (let col = 0; col < BOARD_DIMENSIONS[1]; col++) {
-      board[row][col] = Floor;
+      board[row][col] = {character: ' '};  // TODO: use an empty space/void entity
     }
   }
 
-  // TODO: factor these out
-  if (ladders.up) {
-    const ladderUpCoords = [_.random(2, 45), _.random(2, 45)];
-    board[ladderUpCoords[0]][ladderUpCoords[1]] = LadderUp;
-    spawnCoordinates['up'] = [ladderUpCoords[0] + 1, ladderUpCoords[1]];
-  }
+  // TODO: use dynamic room sizes that account for different board dimensions
+  _.times(240, () => {
+    const middleRect = makeRect([_.random(1, 40), _.random(1, 40)], _.random(6, 9), _.random(6, 9));
+    middleRect.boundary.forEach((coords) => {
+      if (board[coords[0]][coords[1]].type !== floorEntity) {
+        board[coords[0]][coords[1]] = Wall;
+      }
+    })
 
-  if (ladders.down) {
-    const ladderDownCoords = [_.random(2, 45), _.random(2, 45)];
-    board[ladderDownCoords[0]][ladderDownCoords[1]] = LadderDown;
-    spawnCoordinates['down'] = [ladderDownCoords[0] - 1, ladderDownCoords[1]];
-  }
-  
-  return {
-    board,
-    spawnCoordinates
-  };
+    middleRect.inner.forEach((coords) => {
+      board[coords[0]][coords[1]] = Floor;
+    })
+  })
+
+  return board;
 }
 
+function generateLevel(ladders, boss, player) {
+  const board = generateEmptyLevel();
+  let level = populateEntities({board}, ladders, boss, player);
+  
+  return {
+    ...level,
+    board: level.board,
+  }
+}
 
 export default function generateLevels() {
   let levels = [];
-  for (let levelNumber = 0; levelNumber < NUMBER_OF_LEVELS; levelNumber++) {
-    levels.push(generateLevel({down: true, up: true}));
-  }
-  
-  // placeholder for testing
-  levels[0].board[0][0] = _.clone(Player);
-  levels[0].spawnCoordinates.player = [0, 0]
-  levels[0].board[49][49] = _.clone(DollarEnemy);
+  levels.push(generateLevel({up:true, down:false}, false, true));
+  levels.push(generateLevel({up:true, down:true}, false, false));
+  levels.push(generateLevel({up:false, down:true}, true, false));
   
   return levels;
 }
