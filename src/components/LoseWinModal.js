@@ -3,6 +3,7 @@ import { Button, Modal } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 import { reset } from '../actions/gameActions';
+import generateLevels from '../utils/generateLevels';
 
 const getState = (state) => {
   return {
@@ -45,7 +46,8 @@ export default class LoseWinModal extends React.Component {
   
   handleResetGame() {
     this.closeModal();
-    this.props.reset();
+    
+    this.props.reset(generateLevels());
   }
   
   render() {

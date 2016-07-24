@@ -43,9 +43,12 @@ export function pickUpItem(item, coordinates) {
   };
 }
 
-export function reset() {
+export function reset(levels) {
   return {
-    type: RESET
+    type: RESET,
+    payload: {
+      levels
+    }
   };
 }
 

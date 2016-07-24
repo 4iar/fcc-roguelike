@@ -151,7 +151,12 @@ export default function game(state = initialState.game, action) {
       }
     }
     case RESET: {
-      return initialState.game;
+      let newState = initialState.game;
+      newState.levels = action.payload.levels;
+      newState.board = newState.levels[0].board;
+      newState.player.coordinates = newState.levels[0].spawnCoordinates.player;
+      
+      return newState;
     }
     default:
       return state;
