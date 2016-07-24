@@ -63,7 +63,7 @@ export default class GamePage extends React.Component {
         case armourEntity:
         case potionEntity:
           console.log("got an item : " + entity.name);
-          this.props.pickUpItem(entity); 
+          this.props.pickUpItem(entity, newCoordinates); 
           break;
         default:
           console.log("dunno");

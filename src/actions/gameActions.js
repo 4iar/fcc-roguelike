@@ -29,7 +29,7 @@ export function changeLevel(direction) {
   };
 }
 
-export function pickUpItem(item) {
+export function pickUpItem(item, coordinates) {
   let itemTypeMap = { }
   itemTypeMap[weaponEntity] = PICKUPWEAPON;
   itemTypeMap[armourEntity] = PICKUPARMOUR;
@@ -37,7 +37,8 @@ export function pickUpItem(item) {
   return {
     type: itemTypeMap[item.type],
     payload: {
-      item
+      item,
+      coordinates
     }
   };
 }
