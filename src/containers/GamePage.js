@@ -10,7 +10,6 @@ import getCoordinatesInDirection from '../utils/getCoordinatesInDirection';
 import outOfBounds from '../utils/outOfBounds';
 
 import Board from '../components/Board';
-import Log from '../components/Log';
 import Stats from '../components/Stats';
 import LoseWinModal from '../components/LoseWinModal';
 
@@ -76,14 +75,13 @@ export default class GamePage extends React.Component {
     return (
       <Grid>
         <LoseWinModal />
-        
+
         <Row>
           <Stats />
         </Row>
 
         <Row>
           <Board />
-          <Log />
         </Row>
 
       </Grid>
