@@ -36,9 +36,9 @@ function generateEmptyLevel() {
   return board;
 }
 
-function generateLevel() {
+function generateLevel(ladders, boss, player) {
   const board = generateEmptyLevel();
-  let level = populateEntities({board}, {up: true, down: true});
+  let level = populateEntities({board}, ladders, boss, player);
   
   return {
     ...level,
@@ -48,9 +48,9 @@ function generateLevel() {
 
 export default function generateLevels() {
   let levels = [];
-  for (let levelNumber = 0; levelNumber < NUMBER_OF_LEVELS; levelNumber++) {
-    levels.push(generateLevel());
-  }
-
+  levels.push(generateLevel({up:true, down:false}, false, true));
+  levels.push(generateLevel({up:true, down:true}, false, false));
+  levels.push(generateLevel({up:false, down:true}, true, false));
+  
   return levels;
 }

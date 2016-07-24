@@ -109,7 +109,7 @@ function populatePlayer(level) {
 }
 
 export default function populateEntities(level, ladders={up: true, down: false}, boss=false, player=true) {
-  level = populateLadders(level, {up: true, down: true});
+  level = populateLadders(level, ladders);
   if (player) {
     level = populatePlayer(level, player);
   }
