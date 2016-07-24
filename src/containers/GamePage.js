@@ -25,7 +25,7 @@ const getState = (state) => {
 export default class GamePage extends React.Component {
   constructor(props) {
     super(props);
-    
+
     window.addEventListener("keydown", this.handleKeyDown.bind(this), false);
   }
 
@@ -50,20 +50,17 @@ export default class GamePage extends React.Component {
           this.props.move(newCoordinates);
           break;
         case obstacleEntity:
-          console.log("encountered obstacle");
           break;
         case enemyEntity:
           this.props.attack(newCoordinates, {enemy: _.random(1, 2, true), player: _.random(1, 2, true)});
           break;
         case ladderEntity:
-          console.log("changing level: " + entity.direction);
           this.props.changeLevel(entity.direction);
           break;
         case weaponEntity:
         case armourEntity:
         case potionEntity:
-          console.log("got an item : " + entity.name);
-          this.props.pickUpItem(entity, newCoordinates); 
+          this.props.pickUpItem(entity, newCoordinates);
           break;
         default:
           console.log("dunno");

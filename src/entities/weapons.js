@@ -14,7 +14,7 @@ export const WoodenPokerWeapon = {
   name: 'Wooden Poker',
   damage: 2,
   character: 'w'
-}
+};
 
 export const HattoriHanzoWeapon = {
   ...Weapon,
@@ -22,7 +22,7 @@ export const HattoriHanzoWeapon = {
   damage: 20,
   chance: 35,
   character: 'w'
-}
+};
 
 export const AnalDirgeWeapon = {
   ...Weapon,
@@ -30,6 +30,6 @@ export const AnalDirgeWeapon = {
   damage: 70,
   chance: 2,
   character: 'W'
-}
+};
 
 export const Weapons = [HattoriHanzoWeapon, AnalDirgeWeapon];

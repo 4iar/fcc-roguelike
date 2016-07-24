@@ -51,7 +51,7 @@ export default class Board extends React.Component {
             displayCharacter = this.state.board[row][col].character;
           }
         } else {
-          className = 'square ' + this.state.board[row][col].className
+          className = 'square ' + this.state.board[row][col].className;
           displayCharacter = this.state.board[row][col].character;
         }
 

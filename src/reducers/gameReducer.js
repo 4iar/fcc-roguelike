@@ -73,7 +73,7 @@ export default function game(state = initialState.game, action) {
       const playerObject = state.board[state.player.coordinates[0]][state.player.coordinates[1]];
       //TODO: refactor to use newCoordinates
 
-      newBoard[action.payload.coordinates[0]][action.payload.coordinates[1]] = {...playerObject}
+      newBoard[action.payload.coordinates[0]][action.payload.coordinates[1]] = {...playerObject};
       newBoard[state.player.coordinates[0]][state.player.coordinates[1]] = Floor;
 
       const newCoordinates = action.payload.coordinates;
@@ -162,7 +162,7 @@ export default function game(state = initialState.game, action) {
           ...state.player,
           health: state.player.health + action.payload.item.health
         }
-      }
+      };
     }
     case RESET: {
       let newState = initialState.game;

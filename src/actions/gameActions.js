@@ -31,7 +31,7 @@ export function changeLevel(direction) {
 }
 
 export function pickUpItem(item, coordinates) {
-  let itemTypeMap = { }
+  let itemTypeMap = {};
   itemTypeMap[weaponEntity] = PICKUPWEAPON;
   itemTypeMap[armourEntity] = PICKUPARMOUR;
   itemTypeMap[potionEntity] = PICKUPPOTION;

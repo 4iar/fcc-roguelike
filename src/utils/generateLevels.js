@@ -8,7 +8,6 @@ import { Floor } from '../entities/floor';
 import { Wall } from '../entities/obstacles';
 
 const BOARD_DIMENSIONS = [50, 50];
-const NUMBER_OF_LEVELS = 3;
 
 function generateEmptyLevel() {
   let board = [];
@@ -26,12 +25,12 @@ function generateEmptyLevel() {
       if (board[coords[0]][coords[1]].type !== floorEntity) {
         board[coords[0]][coords[1]] = Wall;
       }
-    })
+    });
 
     middleRect.inner.forEach((coords) => {
       board[coords[0]][coords[1]] = Floor;
-    })
-  })
+    });
+  });
 
   return board;
 }
@@ -43,7 +42,7 @@ function generateLevel(ladders, boss, player) {
   return {
     ...level,
     board: level.board,
-  }
+  };
 }
 
 export default function generateLevels() {

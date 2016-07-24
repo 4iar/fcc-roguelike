@@ -50,7 +50,7 @@ function populateLadders(level, ladders) {
 
 function populatePotions(board) {
   for (let p in Potions) {
-    const Potion = Potions[p]
+    const Potion = Potions[p];
     _.times(Potion.frequency, () => {
       let coords = findRandomEmptyBoardLocation(board);
       board[coords[0]][coords[1]] = _.clone(Potion);
@@ -61,7 +61,7 @@ function populatePotions(board) {
 
 function populateEnemies(board, boss) {
   for (let e in Enemies ) {
-    const Enemy = Enemies[e]
+    const Enemy = Enemies[e];
     _.times(Enemy.frequency, () => {
       let coords = findRandomEmptyBoardLocation(board);
       board[coords[0]][coords[1]] = _.clone(Enemy);
@@ -93,7 +93,7 @@ function populateArmourAndWeapons(board) {
 }
 
 function populatePlayer(level) {
-  let board = level.board
+  let board = level.board;
   
   const coords = findRandomEmptyBoardLocation(board);
   board[coords[0]][coords[1]] = _.clone(Player);

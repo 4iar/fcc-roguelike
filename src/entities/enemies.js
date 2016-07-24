@@ -37,6 +37,6 @@ export const BossEnemy = {
   frequency: 1,
   character: '💀',
   boss: true
-}
+};
 
 export const Enemies = [QuestionEnemy, DollarEnemy];

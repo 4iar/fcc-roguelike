@@ -20,11 +20,10 @@ export default class LoseWinModal extends React.Component {
     this.state = {
       showModal: false,
       outcome: ''
-    }
+    };
   }
 
   componentWillReceiveProps(newProps) {
-    console.log("got new props");
     if (newProps.health <= 0) {
       this.setState({
         showModal: true,
@@ -54,12 +53,12 @@ export default class LoseWinModal extends React.Component {
     const title = {
       won: 'You won!',
       lost: 'You lost :('
-    }
+    };
     
     const body = {
       won: 'Big Boss was defeated',
       lost: 'Big Boss remains undefeated. Try again.'
-    }
+    };
     
     
     return (
