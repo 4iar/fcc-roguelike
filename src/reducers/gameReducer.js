@@ -37,9 +37,14 @@ export default function game(state = initialState.game, action) {
       }
 
       newBoard[action.payload.coordinates[0]][action.payload.coordinates[1]] = newEnemy;
+      
+      let newLevels = state.levels;
+      newLevels[state.levelNumber].board = newBoard;
+      
       return {
         ...state,
         board: newBoard,
+        levels: newLevels,
         bossKilled: newBossKilled,
         player: {
           ...state.player,
@@ -58,7 +63,6 @@ export default function game(state = initialState.game, action) {
       newBoard[state.player.coordinates[0]][state.player.coordinates[1]] = Floor;
 
       const newCoordinates = action.payload.coordinates;
-      console.log(newCoordinates);
       return {
         ...state,
         board: newBoard,
@@ -76,7 +80,7 @@ export default function game(state = initialState.game, action) {
       const newCoordinates = state.levels[newLevelNumber].spawnCoordinates[directionKey];
 
       // set the player character on the new board
-      let newBoard = state.levels[newLevelNumber].board;
+      let newBoard = _.cloneDeep(state.levels[newLevelNumber].board);
       newBoard[newCoordinates[0]][newCoordinates[1]] = state.board[previousCoordinates[0]][previousCoordinates[1]];
 
       let newCurrentBoard = state.board;
