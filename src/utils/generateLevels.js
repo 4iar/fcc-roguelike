@@ -15,7 +15,7 @@ function generateEmptyLevel() {
   for (let row = 0; row < BOARD_DIMENSIONS[0]; row++) {
     board.push([]);
     for (let col = 0; col < BOARD_DIMENSIONS[1]; col++) {
-      board[row][col] = {character: ' '};  // TODO: use an empty space/void entity
+      board[row][col] = {character: ' ', className: ''};  // TODO: use an empty space/void entity
     }
   }
 
