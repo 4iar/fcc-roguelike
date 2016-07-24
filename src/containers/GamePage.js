@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import { Row, Grid } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
@@ -53,7 +54,7 @@ export default class GamePage extends React.Component {
           console.log("encountered obstacle");
           break;
         case enemyEntity:
-          this.props.attack(newCoordinates);
+          this.props.attack(newCoordinates, {enemy: _.random(1, 2, true), player: _.random(1, 2, true)});
           break;
         case ladderEntity:
           console.log("changing level: " + entity.direction);

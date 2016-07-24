@@ -2,11 +2,12 @@ import { ATTACK, MOVE, CHANGELEVEL, PICKUPWEAPON, PICKUPARMOUR, PICKUPPOTION, RE
 import { weaponEntity, armourEntity, potionEntity } from '../constants/entityTypes';
 
 
-export function attack(coordinates) {
+export function attack(coordinates, multipliers) {
   return  {
     type: ATTACK,
     payload: {
-      coordinates
+      coordinates,
+      multipliers,
     }
   };
 }
@@ -47,7 +48,7 @@ export function reset(levels) {
   return {
     type: RESET,
     payload: {
-      levels
+      levels,
     }
   };
 }
